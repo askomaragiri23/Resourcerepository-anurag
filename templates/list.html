@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>SSE Resource Repository Search Results</title>
+</head>
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css">
+   th:tr {
+      color: blue;
+   }
+
+   tr:nth-of-type(2n) {
+      border: 1px solid black;
+      background-color: rgba(150, 150, 150, 0.5);
+   }
+
+   td {
+      padding: 8px 8px;
+      border: 1px solid black;
+   }
+
+   a:link,
+   a:visited {
+      background-color: green;
+      color: black;
+      padding: 15px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+   }
+
+   a:hover,
+   a:active {
+      background-color: lightseagreen;
+   }
+
+   #example1 {
+      border: 5px solid black;
+      padding: 5px;
+      background: powderblue;
+      background-clip: content-box;
+      font-family: Courier;
+   }
+</style>
+
+<body>
+   <div id="example1">
+      <h1 style="text-align: center;background-color:green;width: 50%;">SSE Resource Repository</h1>
+      <input type="button" value="Print this page" onClick="window.print()"
+         style="font-size:12pt;color:black;background-color:goldenrod;border:5px solid #336600;padding:5px">      
+      <!-- Input data table -->
+      <h3 style="font-size:18px;">Input data:</h3>
+      <table style="margin-left: 20px;">
+         <!-- Table headers -->
+         <th>
+            <tr style="color:black; ">
+               <td><b>Input</b></td>
+               <td><b>Value</b></td>
+            </tr>
+         </th>
+         {% for key, value in sse_resource_dict_list[0].items() %}
+         <!-- table rows -->
+         <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+            {%endfor%}
+         </tr>
+      </table>
+      <br><br><br>
+      <!-- Result data table -->
+      <h3 style="font-size:18px;">Result data:</h3>
+      <table style="margin-left: 20px;">
+         <!-- Table headers -->
+         <th>
+            <tr style="color:black; ">
+               <td><b>Resource name</b></td>
+               <td><b>Resource description</b></td>
+               <td><b>Resource details</b></td>
+            </tr>
+         </th>
+         {% for row in sse_resource_dict_list[1]['resultset'] %}
+         <!-- table rows -->
+         <tr>
+            <td>{{row["resource_name"]}}</td>
+            <td>{{row["resource_description"]}}</td>
+            <td>{{row["resource_details"]}}</td>
+            {%endfor%}
+         </tr>
+      </table>
+
+   </div>
+   <a href="/">HOME</a>
+</body>
+
+</html>
