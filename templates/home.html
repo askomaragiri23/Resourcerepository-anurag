@@ -1,0 +1,507 @@
+<html>
+
+<head>
+   <title>SSE Resource Repository</title>
+   <style>
+      body {
+         text-align: left;
+      }
+
+      .centered {
+         margin: auto;
+         width: 20%;
+      }
+
+      .thick-border {
+         border: 3px solid black;
+         border-collapse: collapse;
+      }
+
+      th,
+      td {
+         border: 1px solid black;
+         border-collapse: collapse;
+      }
+
+      .button {
+         background-color: #4CAF50;
+         border: none;
+         color: black;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         font-family: Courier;
+         margin: 4px 2px;
+         cursor: pointer;
+      }
+
+      #example1 {
+         border: 10px solid black;
+         padding: 15px;
+         background: powderblue;
+         background-clip: content-box;
+         font-family: Courier;
+      }
+
+      /* The container */
+      .container {
+         display: block;
+         position: relative;
+         padding-left: 35px;
+         margin-bottom: 12px;
+         cursor: pointer;
+         /* font-size: 22px; */
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+      }
+
+      /* Hide the browser's default checkbox */
+      .container input {
+         position: absolute;
+         opacity: 0;
+         cursor: pointer;
+         height: 0;
+         width: 0;
+      }
+
+      /* Create a custom checkbox */
+      .checkmark {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 25px;
+         width: 25px;
+         background-color: #eee;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container:hover input~.checkmark {
+         background-color: #ccc;
+      }
+
+      /* When the checkbox is checked, add a blue background */
+      .container input:checked~.checkmark {
+         background-color: #2196F3;
+      }
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+         content: "";
+         position: absolute;
+         display: none;
+      }
+
+      /* Show the checkmark when checked */
+      .container input:checked~.checkmark:after {
+         display: block;
+      }
+
+      /* Style the checkmark/indicator */
+      .container .checkmark:after {
+         left: 9px;
+         top: 5px;
+         width: 5px;
+         height: 10px;
+         border: solid white;
+         border-width: 0 3px 3px 0;
+         -webkit-transform: rotate(45deg);
+         -ms-transform: rotate(45deg);
+         transform: rotate(45deg);
+      }
+
+      /* The container */
+      .container_radio {
+         display: block;
+         position: relative;
+         padding-left: 35px;
+         margin-bottom: 12px;
+         cursor: pointer;
+         /* font-size: 22px; */
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+      }
+
+      /* Hide the browser's default radio button */
+      .container_radio input {
+         position: absolute;
+         opacity: 0;
+         cursor: pointer;
+      }
+
+      /* Create a custom radio button */
+      .checkmark_radio {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 25px;
+         width: 25px;
+         background-color: #eee;
+         border-radius: 50%;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container_radio:hover input~.checkmark_radio {
+         background-color: #ccc;
+      }
+
+      /* When the radio button is checked, add a blue background */
+      .container_radio input:checked~.checkmark_radio {
+         background-color: #2196F3;
+      }
+
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .checkmark_radio:after {
+         content: "";
+         position: absolute;
+         display: none;
+      }
+
+      /* Show the indicator (dot/circle) when checked */
+      .container_radio input:checked~.checkmark_radio:after {
+         display: block;
+      }
+
+      /* Style the indicator (dot/circle) */
+      .container_radio .checkmark_radio:after {
+         top: 9px;
+         left: 9px;
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: white;
+      }
+
+      input[type=text] {
+         width: 30%;
+         padding: 12px 20px;
+         margin: 8px 0;
+         box-sizing: border-box;
+         border: 1px solid #555;
+         outline: none;
+         font-family: 'Courier New', Courier, monospace;
+         font-size: medium;
+      }
+
+      input[type=text]:focus {
+         background-color: lightblue;
+      }
+
+      table {
+         border: 3px solid black;
+         padding: 5px;
+      }
+
+      th,
+      td {
+         border: 1px solid black;
+         padding: 5px;
+      }
+
+      table {
+         border-spacing: 15px;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="example1">
+      <form action="{{ url_for('search') }}" method="POST">
+         <h1 style="text-align: center;background-color: orangered;width: 50%;font-weight:bolder;">Om Sri Sai Ram</h1>
+         <h1 style="text-align: center;background-color:orange;width: 50%;font-weight:bolder;">SSE Resource Repository
+         </h1>
+         <h3>1. Select SSE Group:</h3><br>
+         <table style="width:100%">
+            <tr>
+               <td>
+                  <label class="container_radio">Pre-SSE
+                     <input type="radio" id="pre_sse" name="groups" value="pre_sse">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Group-1
+                     <input type="radio" id="group_1" name="groups" value="group_1">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Group-2
+                     <input type="radio" id="group_2" name="groups" value="group_2">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Group-3
+                     <input type="radio" id="group_3" name="groups" value="group_3" checked="checked">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Group-4
+                     <input type="radio" id="group_4" name="groups" value="group_4">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+         </table>
+         <br>
+         <h3>2. Select Category of instruction:</h3><br>
+         <table style="width:100%">
+            <tr>
+               <td>
+                  <label class="container_radio">Activity
+                     <input type="radio" id="activity" name="categories" value="activity" checked="checked">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Books
+                     <input type="radio" id="book" name="categories" value="book">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Ethical dilemma
+                     <input type="radio" id="ethical_dilemma" name="categories" value="ethical_dilemma">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Role model
+                     <input type="radio" id="role_model" name="categories" value="role_model">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Life application
+                     <input type="radio" id="life_application" name="categories" value="life_application">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Story
+                     <input type="radio" id="story" name="categories" value="story">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Swami's quotes
+                     <input type="radio" id="quote" name="categories" value="quote">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+         </table>
+         <br>
+         <h3>3. Select Value/Sub-value:</h3><br>
+         <table style="width:100%">
+            <tr>
+               <td>
+                  <label class="container_radio">Ceiling on desires
+                     <input type="radio" id="ceiling_on_desires" name="values" value="ceiling_on_desires">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Cleanliness
+                     <input type="radio" id="cleanliness" name="values" value="cleanliness">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Compassion
+                     <input type="radio" id="compassion" name="values" value="compassion">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Contentment
+                     <input type="radio" id="contentment" name="values" value="contentment">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Courage
+                     <input type="radio" id="courage" name="values" value="courage">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Determination
+                     <input type="radio" id="determination" name="values" value="determination">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Devotion
+                     <input type="radio" id="devotion" name="values" value="devotion">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Discrimination
+                     <input type="radio" id="discrimination" name="values" value="discrimination">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Duty
+                     <input type="radio" id="duty" name="values" value="duty">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Forbearance
+                     <input type="radio" id="forbearance" name="values" value="forbearance">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Forgiveness
+                     <input type="radio" id="forgiveness" name="values" value="forgiveness">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Gratitude
+                     <input type="radio" id="gratitude" name="values" value="gratitude">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Honesty
+                     <input type="radio" id="honesty" name="values" value="honesty">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Humility
+                     <input type="radio" id="humility" name="values" value="humility">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Kindness
+                     <input type="radio" id="kindness" name="values" value="kindness">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Love
+                     <input type="radio" id="love" name="values" value="love">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Non-violence
+                     <input type="radio" id="non_violence" name="values" value="non_violence">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Patience
+                     <input type="radio" id="patience" name="values" value="patience">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Peace
+                     <input type="radio" id="peace" name="values" value="peace">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Perseverance
+                     <input type="radio" id="perseverance" name="values" value="perseverance">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Purity
+                     <input type="radio" id="purity" name="values" value="purity">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Right conduct
+                     <input type="radio" id="right_conduct" name="values" value="right_conduct" checked="checked">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Sacrifice
+                     <input type="radio" id="sacrifice" name="values" value="sacrifice">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Self Confidence
+                     <input type="radio" id="self_confidence" name="values" value="self_confidence">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Self Control
+                     <input type="radio" id="self_control" name="values" value="self_control">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <label class="container_radio">Self Discipline
+                     <input type="radio" id="self_discipline" name="values" value="self_discipline">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Selfless Service
+                     <input type="radio" id="selfless_service" name="values" value="selfless_service">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Tolerance
+                     <input type="radio" id="tolerance" name="values" value="tolerance">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Truth
+                     <input type="radio" id="truth" name="values" value="truth">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+               <td>
+                  <label class="container_radio">Unity in thought, word and deed
+                     <input type="radio" id="unity_in_thought_word_and_deed" name="values"
+                        value="unity_in_thought_word_and_deed">
+                     <span class="checkmark_radio"></span>
+                  </label>
+               </td>
+            </tr>
+         </table>
+         <br>
+         <input type="submit" value="Search"
+            style="font-size:18pt;color:black;background-color:orange;border:5px solid #336600;padding:5px" />
+      </form>
+   </div>
+</body>
+
+</html>
