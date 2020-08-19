@@ -212,9 +212,6 @@ def insert():
          # con.close()
          return render_template("result.html",sse_resource_dict_list = sse_resource_dict_list)
 
-# @app.route('/qa')
-# def qa():
-#    return render_template('qa.html')   
 
 @app.route('/search',methods = ['POST', 'GET'])
 def search():
